@@ -1,0 +1,23 @@
+--- spice-0.8.1/client/x11/red_window.cpp.orig	2010-12-16 16:23:56.000000000 +0100
++++ spice-0.8.1/client/x11/red_window.cpp	2011-07-17 21:26:16.466759495 +0200
+@@ -2075,7 +2075,7 @@
+ #ifdef USE_OGL
+ RedGlContext RedWindow::create_context_gl()
+ {
+-    RedGlContext *context = NULL;
++    RedGlContext context = NULL;
+     if (XPlatform::get_fbconfig()[_screen]) {
+         XLockDisplay(x_display);
+         context = glXCreateContext(x_display, XPlatform::get_vinfo()[_screen], NULL, GL_TRUE);
+--- spice-0.8.1/client/display_channel.cpp.orig	2011-02-10 20:04:20.000000000 +0100
++++ spice-0.8.1/client/display_channel.cpp	2011-07-18 04:22:57.727596629 +0200
+@@ -1437,9 +1437,6 @@
+ 
+ void DisplayChannel::create_surface(int surface_id, int width, int height, uint32_t format)
+ {
+-#ifdef USE_OGL
+-    Canvas *canvas;
+-#endif
+     AutoRef<CreateSurfaceEvent> event(new CreateSurfaceEvent(*this, surface_id, width, height,
+                                                              format));
+     get_client().push_event(*event);

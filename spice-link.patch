@@ -1,0 +1,20 @@
+--- spice-0.8.1/server/Makefile.am.orig	2011-03-24 15:25:19.000000000 +0100
++++ spice-0.8.1/server/Makefile.am	2011-07-16 20:32:00.693757490 +0200
+@@ -71,6 +71,7 @@
+ 	$(SLIRP_LIBS)				\
+ 	$(LIBRT)				\
+ 	$(Z_LIBS)				\
++	-lpthread				\
+ 	$(NULL)
+ 
+ if SUPPORT_TUNNEL
+--- spice-0.8.1/configure.ac.orig	2011-07-16 21:32:29.380545659 +0200
++++ spice-0.8.1/configure.ac	2011-07-17 05:07:41.354793498 +0200
+@@ -224,6 +224,7 @@
+ if test "x$have_opengl" = "xyes"; then
+    AC_CHECK_LIB(GL, glBlendFunc, GL_LIBS="$GL_LIBS -lGL", have_opengl=no)
+    AC_CHECK_LIB(GLU, gluSphere, GL_LIBS="$GL_LIBS -lGLU", have_opengl=no)
++   AC_CHECK_LIB(X11, XOpenDisplay, GL_LIBS="$GL_LIBS -lX11", have_opengl=no)
+    GL_CFLAGS="-DGL_GLEXT_PROTOTYPES -DUSE_OGL"
+ 
+    if test "x$have_opengl" = "xno"; then
