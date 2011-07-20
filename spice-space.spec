@@ -19,6 +19,7 @@ BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
 BuildRequires:	libcacard-devel >= 0.1.2
 BuildRequires:	libjpeg-devel
+BuildRequires:	libslirp-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
@@ -118,9 +119,9 @@ Klient SPICE dla X11.
 %{__automake}
 %configure \
 	--enable-opengl \
-	--enable-smartcard
+	--enable-smartcard \
+	--enable-tunnel
 # --enable-gui		BR: CEGUI-devel >= 0.6.0 < 0.7.0
-# --enable-tunnel	BR: libslirp-devel
 
 %{__make}
 
@@ -147,8 +148,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n spice-server-devel
 %defattr(644,root,root,755)
-%{_includedir}/spice-server
 %attr(755,root,root) %{_libdir}/libspice-server.so
+%{_includedir}/spice-server
 %{_pkgconfigdir}/spice-server.pc
 
 %files -n spice-server-static
