@@ -8,13 +8,13 @@
  	$(NULL)
  
  if SUPPORT_TUNNEL
---- spice-0.8.1/configure.ac.orig	2011-07-16 21:32:29.380545659 +0200
-+++ spice-0.8.1/configure.ac	2011-07-17 05:07:41.354793498 +0200
-@@ -224,6 +224,7 @@
- if test "x$have_opengl" = "xyes"; then
-    AC_CHECK_LIB(GL, glBlendFunc, GL_LIBS="$GL_LIBS -lGL", have_opengl=no)
-    AC_CHECK_LIB(GLU, gluSphere, GL_LIBS="$GL_LIBS -lGLU", have_opengl=no)
+--- spice-0.8.2/configure.ac.orig	2011-07-25 20:55:56.000000000 +0200
++++ spice-0.8.2/configure.ac	2011-07-25 20:57:18.293178544 +0200
+@@ -237,6 +237,7 @@
+ if test "x$enable_opengl" = "xyes"; then
+    AC_CHECK_LIB(GL, glBlendFunc, GL_LIBS="$GL_LIBS -lGL", enable_opengl=no)
+    AC_CHECK_LIB(GLU, gluSphere, GL_LIBS="$GL_LIBS -lGLU", enable_opengl=no)
 +   AC_CHECK_LIB(X11, XOpenDisplay, GL_LIBS="$GL_LIBS -lX11", have_opengl=no)
     GL_CFLAGS="-DGL_GLEXT_PROTOTYPES -DUSE_OGL"
  
-    if test "x$have_opengl" = "xno"; then
+    if test "x$enable_opengl" = "xno"; then

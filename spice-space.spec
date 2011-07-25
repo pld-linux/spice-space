@@ -2,15 +2,14 @@ Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
-Version:	0.8.1
+Version:	0.8.2
 Release:	0.1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	http://spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	df682a42f4bc03fa5e35d2844a0e4b4b
+# Source0-md5:	80aa1b165b2c2ed5608012986ade3c01
 Patch0:		spice-sh.patch
 Patch1:		spice-link.patch
-Patch2:		spice-gl.patch
 URL:		http://spice-space.org/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	alsa-lib-devel
@@ -25,7 +24,7 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	pixman-devel >= 0.17.7
 BuildRequires:	pkgconfig
-BuildRequires:	spice-protocol >= 0.7.0
+BuildRequires:	spice-protocol >= 0.8.1
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
 BuildRequires:	xorg-lib-libXrandr-devel >= 1.2
@@ -109,7 +108,6 @@ Klient SPICE dla X11.
 %setup -q -n spice-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -118,6 +116,7 @@ Klient SPICE dla X11.
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-silent-rules \
 	--enable-opengl \
 	--enable-smartcard \
 	--enable-tunnel
