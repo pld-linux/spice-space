@@ -1,20 +1,20 @@
---- spice-0.8.1/server/Makefile.am.orig	2011-03-24 15:25:19.000000000 +0100
-+++ spice-0.8.1/server/Makefile.am	2011-07-16 20:32:00.693757490 +0200
-@@ -71,6 +71,7 @@
- 	$(SLIRP_LIBS)				\
- 	$(LIBRT)				\
- 	$(Z_LIBS)				\
-+	-lpthread				\
+--- spice-0.10.0/server/Makefile.am.orig	2011-11-10 16:02:06.000000000 +0100
++++ spice-0.10.0/server/Makefile.am	2011-11-13 08:37:58.767174939 +0100
+@@ -48,6 +48,7 @@
+ 	$(SASL_LIBS)					\
+ 	$(SLIRP_LIBS)					\
+ 	$(SSL_LIBS)					\
++	-lpthread					\
  	$(NULL)
  
- if SUPPORT_TUNNEL
---- spice-0.8.2/configure.ac.orig	2011-07-25 20:55:56.000000000 +0200
-+++ spice-0.8.2/configure.ac	2011-07-25 20:57:18.293178544 +0200
-@@ -237,6 +237,7 @@
+ libspice_server_la_SOURCES =			\
+--- spice-0.10.0/configure.ac.orig	2011-11-13 08:37:42.000000000 +0100
++++ spice-0.10.0/configure.ac	2011-11-13 08:38:30.260509328 +0100
+@@ -246,6 +246,7 @@
  if test "x$enable_opengl" = "xyes"; then
     AC_CHECK_LIB(GL, glBlendFunc, GL_LIBS="$GL_LIBS -lGL", enable_opengl=no)
     AC_CHECK_LIB(GLU, gluSphere, GL_LIBS="$GL_LIBS -lGLU", enable_opengl=no)
 +   AC_CHECK_LIB(X11, XOpenDisplay, GL_LIBS="$GL_LIBS -lX11", have_opengl=no)
-    GL_CFLAGS="-DGL_GLEXT_PROTOTYPES -DUSE_OGL"
+    AC_DEFINE([USE_OPENGL], [1], [Define to build with OpenGL support])
+    AC_DEFINE([GL_GLEXT_PROTOTYPES], [], [Enable GLExt prototypes])
  
-    if test "x$enable_opengl" = "xno"; then

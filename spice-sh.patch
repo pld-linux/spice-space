@@ -1,40 +1,18 @@
---- spice-0.8.1/configure.ac.orig	2011-04-20 10:48:33.000000000 +0200
-+++ spice-0.8.1/configure.ac	2011-07-16 12:18:43.082766454 +0200
-@@ -138,7 +138,7 @@
-    )
+--- spice-0.10.0/configure.ac.orig	2011-11-10 16:02:06.000000000 +0100
++++ spice-0.10.0/configure.ac	2011-11-13 08:00:42.323766723 +0100
+@@ -145,9 +145,9 @@
  AC_SUBST(LIBRT)
  
--SPICE_NONPKGCONFIG_LIBS+=" -pthread $LIBM $LIBRT"
-+SPICE_NONPKGCONFIG_LIBS="$SPICE_NONPKGCONFIG_LIBS -pthread $LIBM $LIBRT"
- 
- dnl The client needs a yield function
- AC_MSG_CHECKING(for posix yield function)
-@@ -150,7 +150,7 @@
- 		[$yield_func()],
- 		[posix_yield_func="$yield_func"
- 		break])
--    CPPFLAGS="spice_save_CPPFLAGS"
-+    CPPFLAGS="$spice_save_CPPFLAGS"
- done
- if test x"$posix_yield_func" = xnone; then
-     AC_MSG_ERROR([No posix yield function found])
-@@ -167,13 +167,13 @@
-     [
-         AC_SUBST(CEGUI06_CFLAGS)
-         AC_SUBST(CEGUI06_LIBS)
--        CEGUI06_CFLAGS+="-DUSE_GUI"
-+        CEGUI06_CFLAGS="$CEGUI06_CFLAGS -DUSE_GUI"
-     ],
-     [
-         PKG_CHECK_MODULES(CEGUI, CEGUI >= 0.6.0 CEGUI < 0.7.0)
-         AC_SUBST(CEGUI_CFLAGS)
-         AC_SUBST(CEGUI_LIBS)
--        CEGUI_CFLAGS+="-DUSE_GUI"
-+        CEGUI_CFLAGS="$CEGUI_CFLAGS -DUSE_GUI"
-     ])
+ if test "$red_target" = "windows"; then
+-	SPICE_NONPKGCONFIG_LIBS+=" -lpthreadGC2 -lversion -lmsimg32 $LIBM"
++	SPICE_NONPKGCONFIG_LIBS="$SPICE_NONPKGCONFIG_LIBS -lpthreadGC2 -lversion -lmsimg32 $LIBM"
+ else
+-	SPICE_NONPKGCONFIG_LIBS+=" -pthread $LIBM $LIBRT"
++	SPICE_NONPKGCONFIG_LIBS="$SPICE_NONPKGCONFIG_LIBS -pthread $LIBM $LIBRT"
  fi
  
-@@ -181,7 +181,7 @@
+ dnl The client needs a yield function
+@@ -191,7 +191,7 @@
  	PKG_CHECK_MODULES(SLIRP, slirp)
  	AC_SUBST(SLIRP_CFLAGS)
  	AC_SUBST(SLIRP_LIBS)
@@ -43,7 +21,7 @@
  	AC_DEFINE([HAVE_SLIRP], [], [Define if we have slirp])
  fi
  
-@@ -197,13 +197,13 @@
+@@ -207,13 +207,13 @@
  PKG_CHECK_MODULES(PIXMAN, pixman-1 >= 0.17.7)
  AC_SUBST(PIXMAN_CFLAGS)
  AC_SUBST(PIXMAN_LIBS)
@@ -57,9 +35,9 @@
 -SPICE_REQUIRES+=" celt051 >= 0.5.1.1"
 +SPICE_REQUIRES="$SPICE_REQUIRES celt051 >= 0.5.1.1"
  
- PKG_CHECK_MODULES(ALSA, alsa)
- AC_SUBST(ALSA_CFLAGS)
-@@ -212,14 +212,14 @@
+ if test ! -e client/generated_marshallers.cpp; then
+ AC_MSG_CHECKING([for pyparsing python module])
+@@ -234,14 +234,14 @@
  PKG_CHECK_MODULES(SSL, openssl)
  AC_SUBST(SSL_CFLAGS)
  AC_SUBST(SSL_LIBS)
@@ -74,14 +52,14 @@
 -# SPICE_REQUIRES+=" gl glu"
 +# SPICE_REQUIRES="$SPICE_REQUIRES gl glu"
  
- if test "x$have_opengl" = "xyes"; then
-    AC_CHECK_LIB(GL, glBlendFunc, GL_LIBS="$GL_LIBS -lGL", have_opengl=no)
-@@ -233,7 +233,7 @@
+ if test "x$enable_opengl" = "xyes"; then
+    AC_CHECK_LIB(GL, glBlendFunc, GL_LIBS="$GL_LIBS -lGL", enable_opengl=no)
+@@ -256,7 +256,7 @@
  
  AC_SUBST(GL_CFLAGS)
  AC_SUBST(GL_LIBS)
 -SPICE_NONPKGCONFIG_LIBS+=" $GL_LIBS"
 +SPICE_NONPKGCONFIG_LIBS="$SPICE_NONPKGCONFIG_LIBS $GL_LIBS"
  
- PKG_CHECK_MODULES(XRANDR, xrandr)
- PKG_CHECK_MODULES(XFIXES, xfixes)
+ if test "$red_target" = "x11"; then
+ 	PKG_CHECK_MODULES(XRANDR, xrandr)
