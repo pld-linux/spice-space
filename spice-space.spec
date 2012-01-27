@@ -2,12 +2,12 @@ Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
-Version:	0.10.0
+Version:	0.10.1
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	http://spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	d9f0b0280c9e2291623c9560e156be26
+# Source0-md5:	70060129e274241b4a08e23e86de29a3
 Patch0:		spice-sh.patch
 Patch1:		spice-link.patch
 URL:		http://spice-space.org/
@@ -25,9 +25,10 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	pixman-devel >= 0.17.7
 BuildRequires:	pkgconfig
-BuildRequires:	spice-protocol >= 0.9.1
+BuildRequires:	spice-protocol >= 0.10.1
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
+BuildRequires:	xorg-lib-libXinerama-devel >= 1.0
 BuildRequires:	xorg-lib-libXrandr-devel >= 1.2
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	zlib-devel
@@ -98,6 +99,7 @@ Requires:	celt051 >= 0.5.1.1
 Requires:	libcacard >= 0.1.2
 Requires:	pixman >= 0.17.7
 Requires:	xorg-lib-libXrandr >= 1.2
+Requires:	xorg-lib-libXinerama >= 1.0
 
 %description -n spice-client
 SPICE client for X11.

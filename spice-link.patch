@@ -1,9 +1,9 @@
---- spice-0.10.0/server/Makefile.am.orig	2011-11-10 16:02:06.000000000 +0100
-+++ spice-0.10.0/server/Makefile.am	2011-11-13 08:37:58.767174939 +0100
+--- spice-0.10.1/server/Makefile.am.orig	2011-11-28 11:05:49.000000000 +0100
++++ spice-0.10.1/server/Makefile.am	2012-01-26 21:33:38.849481160 +0100
 @@ -48,6 +48,7 @@
- 	$(SASL_LIBS)					\
  	$(SLIRP_LIBS)					\
  	$(SSL_LIBS)					\
+ 	$(Z_LIBS)					\
 +	-lpthread					\
  	$(NULL)
  
