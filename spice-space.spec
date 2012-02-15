@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
 Version:	0.10.1
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	http://spice-space.org/download/releases/spice-%{version}.tar.bz2
@@ -69,6 +69,7 @@ Summary:	Header files for SPICE server library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki serwera SPICE
 Group:		Development/Libraries
 Requires:	celt051-devel >= 0.5.1.1
+Requires:	libslirp-devel
 Requires:	openssl-devel
 Requires:	pixman-devel >= 0.17.7
 Requires:	spice-server-libs = %{version}-%{release}
