@@ -1,9 +1,13 @@
+#
+# Conditional build:
+%bcond_with	slirp		# build with tunneling support (breaks qemu)
+#
 Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
 Version:	0.10.1
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	http://spice-space.org/download/releases/spice-%{version}.tar.bz2
@@ -19,12 +23,13 @@ BuildRequires:	automake
 BuildRequires:	cyrus-sasl-devel >= 2
 BuildRequires:	libcacard-devel >= 0.1.2
 BuildRequires:	libjpeg-devel
-BuildRequires:	libslirp-devel
+%{?with_slirp:BuildRequires:	libslirp-devel}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	pixman-devel >= 0.17.7
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	spice-protocol >= 0.10.1
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
@@ -69,7 +74,7 @@ Summary:	Header files for SPICE server library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki serwera SPICE
 Group:		Development/Libraries
 Requires:	celt051-devel >= 0.5.1.1
-Requires:	libslirp-devel
+%{?with_slirp:Requires:	libslirp-devel}
 Requires:	openssl-devel
 Requires:	pixman-devel >= 0.17.7
 Requires:	spice-server-libs = %{version}-%{release}
@@ -123,7 +128,7 @@ Klient SPICE dla X11.
 	--disable-silent-rules \
 	--enable-opengl \
 	--enable-smartcard \
-	--enable-tunnel
+	%{?with_slirp:en}%{!?with_slirp:dis}able-tunnel
 # --enable-gui		BR: CEGUI-devel >= 0.6.0 < 0.7.0
 
 %{__make}
