@@ -1,10 +1,10 @@
---- spice-0.10.1/server/Makefile.am.orig	2011-11-28 11:05:49.000000000 +0100
-+++ spice-0.10.1/server/Makefile.am	2012-01-26 21:33:38.849481160 +0100
-@@ -48,6 +48,7 @@
- 	$(SLIRP_LIBS)					\
- 	$(SSL_LIBS)					\
- 	$(Z_LIBS)					\
-+	-lpthread					\
+--- spice-0.12.0/server/Makefile.am.orig	2012-09-18 21:40:06.012421018 +0200
++++ spice-0.12.0/server/Makefile.am	2012-09-18 21:42:19.709084898 +0200
+@@ -38,6 +38,7 @@
+ 	$(SLIRP_LIBS)							\
+ 	$(SSL_LIBS)							\
+ 	$(Z_LIBS)							\
++	-lpthread							\
  	$(NULL)
  
  libspice_server_la_SOURCES =			\
