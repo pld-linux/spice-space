@@ -29,6 +29,8 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	pixman-devel >= 0.17.7
 BuildRequires:	pkgconfig
+BuildRequires:	python
+BuildRequires:	python-pyparsing
 BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	spice-protocol >= 0.10.1
 BuildRequires:	xorg-lib-libXext-devel
