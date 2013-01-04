@@ -1,0 +1,11 @@
+--- spice-0.12.2/configure.ac.orig	2013-01-04 15:09:25.311544149 +0100
++++ spice-0.12.2/configure.ac	2013-01-04 15:16:44.294868335 +0100
+@@ -26,7 +26,7 @@
+         [spice-devel@lists.freedesktop.org], spice)
+ 
+ AC_CONFIG_MACRO_DIR([m4])
+-AM_CONFIG_HEADER([config.h])
++AC_CONFIG_HEADERS([config.h])
+ AC_CONFIG_AUX_DIR(.)
+ 
+ # For automake >= 1.12

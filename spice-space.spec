@@ -1,3 +1,4 @@
+# TODO: verify slirp comment validity with current qemu/spice versions [how to?]
 #
 # Conditional build:
 %bcond_with	slirp		# build with tunneling support (breaks qemu)
@@ -6,21 +7,23 @@ Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
-Version:	0.12.0
-Release:	2
+Version:	0.12.2
+Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	http://spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	12c6ea4938215f8f9f10d2925f7bec9b
+# Source0-md5:	23b06b993083cf5b90578054c6f5db58
 Patch0:		spice-sh.patch
 Patch1:		spice-link.patch
+Patch2:		spice-am.patch
 URL:		http://spice-space.org/
 BuildRequires:	OpenGL-GLU-devel
 BuildRequires:	alsa-lib-devel
-BuildRequires:	celt051-devel >= 0.5.1.1
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake
+BuildRequires:	celt051-devel >= 0.5.1.1
 BuildRequires:	cyrus-sasl-devel >= 2
+BuildRequires:	glib2-devel >= 1:2.22
 BuildRequires:	libcacard-devel >= 0.1.2
 BuildRequires:	libjpeg-devel
 %{?with_slirp:BuildRequires:	libslirp-devel}
@@ -63,6 +66,7 @@ Summary:	SPICE server library
 Summary(pl.UTF-8):	Biblioteka serwera SPICE
 Group:		Libraries
 Requires:	celt051 >= 0.5.1.1
+Requires:	glib2 >= 1:2.22
 Requires:	pixman >= 0.17.7
 
 %description -n spice-server-libs
@@ -76,6 +80,7 @@ Summary:	Header files for SPICE server library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki serwera SPICE
 Group:		Development/Libraries
 Requires:	celt051-devel >= 0.5.1.1
+Requires:	glib2-devel >= 1:2.22
 %{?with_slirp:Requires:	libslirp-devel}
 Requires:	openssl-devel
 Requires:	pixman-devel >= 0.17.7
@@ -119,6 +124,7 @@ Klient SPICE dla X11.
 %setup -q -n spice-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -128,9 +134,10 @@ Klient SPICE dla X11.
 %{__automake}
 %configure \
 	--disable-silent-rules \
+	--enable-client \
 	--enable-opengl \
 	--enable-smartcard \
-	%{?with_slirp:en}%{!?with_slirp:dis}able-tunnel
+	--enable-tunnel%{!?with_slirp:=no}
 # --enable-gui		BR: CEGUI-devel >= 0.6.0 < 0.7.0
 
 %{__make}
