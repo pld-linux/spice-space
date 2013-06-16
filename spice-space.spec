@@ -7,12 +7,12 @@ Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
-Version:	0.12.2
+Version:	0.12.3
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	http://spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	23b06b993083cf5b90578054c6f5db58
+# Source0-md5:	f33a682892f6793169f20298b2296449
 Patch0:		spice-sh.patch
 Patch1:		spice-link.patch
 Patch2:		spice-am.patch
@@ -32,10 +32,11 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	pixman-devel >= 0.17.7
 BuildRequires:	pkgconfig
-BuildRequires:	python
+BuildRequires:	python >= 2
 BuildRequires:	python-pyparsing
 BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	spice-protocol >= 0.10.1
+BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
 BuildRequires:	xorg-lib-libXinerama-devel >= 1.0
