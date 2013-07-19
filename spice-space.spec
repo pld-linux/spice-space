@@ -7,12 +7,12 @@ Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
-Version:	0.12.3
+Version:	0.12.4
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	http://spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	f33a682892f6793169f20298b2296449
+# Source0-md5:	325b1c42ce24e75de45a75876b73a8bd
 Patch0:		spice-sh.patch
 Patch1:		spice-link.patch
 Patch2:		spice-am.patch
