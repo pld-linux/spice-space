@@ -1,35 +1,35 @@
-# TODO: verify slirp comment validity with current qemu/spice versions [how to?]
 #
 # Conditional build:
-%bcond_with	slirp		# build with tunneling support (breaks qemu)
+%bcond_without	opengl	# OpenGL support
 #
 Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
-Version:	0.12.4
+Version:	0.12.5
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
-Source0:	http://spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	325b1c42ce24e75de45a75876b73a8bd
+Source0:	http://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
+# Source0-md5:	1256286214fe402703c0a01bd3a85319
 Patch0:		spice-sh.patch
 Patch1:		spice-link.patch
 Patch2:		spice-am.patch
-URL:		http://spice-space.org/
-BuildRequires:	OpenGL-GLU-devel
+URL:		http://www.spice-space.org/
+%{?with_opengl:BuildRequires:	OpenGL-devel}
+%{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
 BuildRequires:	alsa-lib-devel
-BuildRequires:	autoconf >= 2.57
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.63
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	celt051-devel >= 0.5.1.1
 BuildRequires:	cyrus-sasl-devel >= 2
 BuildRequires:	glib2-devel >= 1:2.22
 BuildRequires:	libcacard-devel >= 0.1.2
 BuildRequires:	libjpeg-devel
-%{?with_slirp:BuildRequires:	libslirp-devel}
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2
 BuildRequires:	openssl-devel
+BuildRequires:	opus-devel >= 0.9.14
 BuildRequires:	pixman-devel >= 0.17.7
 BuildRequires:	pkgconfig
 BuildRequires:	python >= 2
@@ -67,6 +67,7 @@ Summary:	SPICE server library
 Summary(pl.UTF-8):	Biblioteka serwera SPICE
 Group:		Libraries
 Requires:	celt051 >= 0.5.1.1
+Requires:	opus >= 0.9.14
 Requires:	glib2 >= 1:2.22
 Requires:	pixman >= 0.17.7
 
@@ -82,7 +83,6 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki serwera SPICE
 Group:		Development/Libraries
 Requires:	celt051-devel >= 0.5.1.1
 Requires:	glib2-devel >= 1:2.22
-%{?with_slirp:Requires:	libslirp-devel}
 Requires:	openssl-devel
 Requires:	pixman-devel >= 0.17.7
 Requires:	spice-server-libs = %{version}-%{release}
@@ -111,6 +111,7 @@ Summary(pl.UTF-8):	Klient SPICE dla X11
 Group:		X11/Applications
 Requires:	celt051 >= 0.5.1.1
 Requires:	libcacard >= 0.1.2
+Requires:	opus >= 0.9.14
 Requires:	pixman >= 0.17.7
 Requires:	xorg-lib-libXrandr >= 1.2
 Requires:	xorg-lib-libXinerama >= 1.0
@@ -136,9 +137,9 @@ Klient SPICE dla X11.
 %configure \
 	--disable-silent-rules \
 	--enable-client \
-	--enable-opengl \
-	--enable-smartcard \
-	--enable-tunnel%{!?with_slirp:=no}
+	%{?with_opengl:--enable-opengl} \
+	--enable-smartcard
+
 # --enable-gui		BR: CEGUI-devel >= 0.6.0 < 0.7.0
 
 %{__make}
