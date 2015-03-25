@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
 Version:	0.12.5
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	http://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
@@ -43,7 +43,7 @@ BuildRequires:	xorg-lib-libXinerama-devel >= 1.0
 BuildRequires:	xorg-lib-libXrandr-devel >= 1.2
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	zlib-devel
-ExclusiveArch:	%{ix86} %{x8664} arm
+ExclusiveArch:	%{ix86} %{x8664} x32 arm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
