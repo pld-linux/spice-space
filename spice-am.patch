@@ -1,11 +1,11 @@
---- spice-0.12.2/configure.ac.orig	2013-01-04 15:09:25.311544149 +0100
-+++ spice-0.12.2/configure.ac	2013-01-04 15:16:44.294868335 +0100
-@@ -26,7 +26,7 @@
-         [spice-devel@lists.freedesktop.org], spice)
+--- spice-0.12.6/configure.ac.orig	2015-10-06 17:09:16.000000000 +0200
++++ spice-0.12.6/configure.ac	2015-10-09 19:15:30.664763514 +0200
+@@ -30,7 +30,7 @@
  
  AC_CONFIG_MACRO_DIR([m4])
+ m4_include([spice-common/m4/spice-deps.m4])
 -AM_CONFIG_HEADER([config.h])
 +AC_CONFIG_HEADERS([config.h])
  AC_CONFIG_AUX_DIR(.)
  
- # For automake >= 1.12
+ AM_INIT_AUTOMAKE([dist-bzip2 no-dist-gzip subdir-objects])

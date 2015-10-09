@@ -6,36 +6,41 @@ Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
-Version:	0.12.5
-Release:	2
+Version:	0.12.6
+Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	http://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	1256286214fe402703c0a01bd3a85319
-Patch0:		spice-sh.patch
-Patch1:		spice-link.patch
-Patch2:		spice-am.patch
+# Source0-md5:	605a8c8ea80bc95076c4b3539c6dd026
+Patch0:		spice-link.patch
+Patch1:		spice-am.patch
+Patch2:		spice-codegen.patch
 URL:		http://www.spice-space.org/
 %{?with_opengl:BuildRequires:	OpenGL-devel}
 %{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
 BuildRequires:	alsa-lib-devel
+BuildRequires:	asciidoc
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	celt051-devel >= 0.5.1.1
 BuildRequires:	cyrus-sasl-devel >= 2
+BuildRequires:	gcc >= 5:3.2
 BuildRequires:	glib2-devel >= 1:2.22
 BuildRequires:	libcacard-devel >= 0.1.2
 BuildRequires:	libjpeg-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:2
+BuildRequires:	lz4-devel
 BuildRequires:	openssl-devel
 BuildRequires:	opus-devel >= 0.9.14
 BuildRequires:	pixman-devel >= 0.17.7
 BuildRequires:	pkgconfig
 BuildRequires:	python >= 2
 BuildRequires:	python-pyparsing
+BuildRequires:	python-six
 BuildRequires:	rpmbuild(macros) >= 1.527
-BuildRequires:	spice-protocol >= 0.10.1
+BuildRequires:	spice-protocol >= 0.12.10
+BuildRequires:	spice-protocol-codegen >= 0.12.10
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
@@ -70,6 +75,7 @@ Requires:	celt051 >= 0.5.1.1
 Requires:	opus >= 0.9.14
 Requires:	glib2 >= 1:2.22
 Requires:	pixman >= 0.17.7
+Obsoletes:	spice-client
 
 %description -n spice-server-libs
 SPICE server library.
@@ -130,17 +136,23 @@ Klient SPICE dla X11.
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+cd spice-common
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd ..
 %configure \
 	--disable-silent-rules \
 	--enable-client \
+	--enable-lz4 \
 	%{?with_opengl:--enable-opengl} \
 	--enable-smartcard
-
-# --enable-gui		BR: CEGUI-devel >= 0.6.0 < 0.7.0
 
 %{__make}
 
@@ -174,7 +186,3 @@ rm -rf $RPM_BUILD_ROOT
 %files -n spice-server-static
 %defattr(644,root,root,755)
 %{_libdir}/libspice-server.a
-
-%files -n spice-client
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/spicec
