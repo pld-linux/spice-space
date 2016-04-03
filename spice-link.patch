@@ -1,10 +1,13 @@
---- spice-0.12.6/spice-common/m4/spice-deps.m4.orig	2015-08-14 10:54:53.000000000 +0200
-+++ spice-0.12.6/spice-common/m4/spice-deps.m4	2015-10-09 19:14:14.964766691 +0200
-@@ -125,6 +125,7 @@
+--- spice-0.13.0/spice-common/m4/spice-deps.m4.orig	2016-01-13 13:27:47.000000000 +0100
++++ spice-0.13.0/spice-common/m4/spice-deps.m4	2016-04-03 10:52:22.234246284 +0200
+@@ -147,8 +147,10 @@
      if test "x$enable_opengl" = "xyes"; then
          AC_CHECK_LIB(GL, glBlendFunc, GL_LIBS="$GL_LIBS -lGL", enable_opengl=no)
          AC_CHECK_LIB(GLU, gluSphere, GL_LIBS="$GL_LIBS -lGLU", enable_opengl=no)
 +        AC_CHECK_LIB(X11, XOpenDisplay, GL_LIBS="$GL_LIBS -lX11", have_opengl=no)
          AC_DEFINE([USE_OPENGL], [1], [Define to build with OpenGL support])
          AC_DEFINE([GL_GLEXT_PROTOTYPES], [], [Enable GLExt prototypes])
++        AC_SUBST([GL_LIBS])
  
+         if test "x$enable_opengl" = "xno"; then
+             AC_MSG_ERROR([GL libraries not available])

@@ -1,17 +1,18 @@
 #
 # Conditional build:
-%bcond_without	opengl	# OpenGL support
+%bcond_without	opengl		# OpenGL support
+%bcond_without	static_libs	# static library
 #
 Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
-Version:	0.12.6
+Version:	0.13.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	http://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	605a8c8ea80bc95076c4b3539c6dd026
+# Source0-md5:	941d322ff4967fb160dd0ca53306139d
 Patch0:		spice-link.patch
 Patch1:		spice-am.patch
 Patch2:		spice-codegen.patch
@@ -152,7 +153,8 @@ cd ..
 	--enable-client \
 	--enable-lz4 \
 	%{?with_opengl:--enable-opengl} \
-	--enable-smartcard
+	--enable-smartcard \
+	%{?with_static_libs:--enable-static}
 
 %{__make}
 
@@ -183,6 +185,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/spice-server
 %{_pkgconfigdir}/spice-server.pc
 
+%if %{with static_libs}
 %files -n spice-server-static
 %defattr(644,root,root,755)
 %{_libdir}/libspice-server.a
+%endif

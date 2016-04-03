@@ -13,3 +13,18 @@
  	$(CODE_GENERATOR_BASEDIR)/spice_codegen.py			\
  	$(NULL)
  
+--- spice-0.13.0/spice-common/tests/Makefile.am.orig	2016-01-13 13:27:47.000000000 +0100
++++ spice-0.13.0/spice-common/tests/Makefile.am	2016-04-03 08:33:52.601261670 +0200
+@@ -27,12 +27,6 @@
+ BUILT_SOURCES = $(TEST_MARSHALLERS)
+ 
+ MARSHALLERS_DEPS =							\
+-	$(CODE_GENERATOR_BASEDIR)/python_modules/__init__.py		\
+-	$(CODE_GENERATOR_BASEDIR)/python_modules/codegen.py		\
+-	$(CODE_GENERATOR_BASEDIR)/python_modules/demarshal.py		\
+-	$(CODE_GENERATOR_BASEDIR)/python_modules/marshal.py		\
+-	$(CODE_GENERATOR_BASEDIR)/python_modules/ptypes.py		\
+-	$(CODE_GENERATOR_BASEDIR)/python_modules/spice_parser.py	\
+ 	$(CODE_GENERATOR_BASEDIR)/spice_codegen.py			\
+ 	$(NULL)
+ 
