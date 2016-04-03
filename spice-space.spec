@@ -6,6 +6,7 @@ Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
+# NOTE: 0.13.x is unstable (see DEVEL branch for it)
 Version:	0.12.6
 Release:	1
 License:	LGPL v2.1+
