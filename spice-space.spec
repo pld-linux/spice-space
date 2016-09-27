@@ -1,24 +1,19 @@
 #
 # Conditional build:
-%bcond_without	opengl		# OpenGL support
 %bcond_without	static_libs	# static library
 #
 Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
-Version:	0.13.0
+Version:	0.13.2
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
-Source0:	http://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	941d322ff4967fb160dd0ca53306139d
-Patch0:		spice-link.patch
-Patch1:		spice-am.patch
-Patch2:		spice-codegen.patch
-URL:		http://www.spice-space.org/
-%{?with_opengl:BuildRequires:	OpenGL-devel}
-%{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
+Source0:	https://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
+# Source0-md5:	e007fbe06359db1376208b026fa5b58d
+Patch0:		spice-am.patch
+URL:		https://www.spice-space.org/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	asciidoc
 BuildRequires:	autoconf >= 2.63
@@ -40,14 +35,7 @@ BuildRequires:	python >= 2
 BuildRequires:	python-pyparsing
 BuildRequires:	python-six
 BuildRequires:	rpmbuild(macros) >= 1.527
-BuildRequires:	spice-protocol >= 0.12.10
-BuildRequires:	spice-protocol-codegen >= 0.12.10
-BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXext-devel
-BuildRequires:	xorg-lib-libXfixes-devel
-BuildRequires:	xorg-lib-libXinerama-devel >= 1.0
-BuildRequires:	xorg-lib-libXrandr-devel >= 1.2
-BuildRequires:	xorg-lib-libXrender-devel
+BuildRequires:	spice-protocol >= 0.12.12
 BuildRequires:	zlib-devel
 ExclusiveArch:	%{ix86} %{x8664} x32 arm
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -132,8 +120,6 @@ Klient SPICE dla X11.
 %prep
 %setup -q -n spice-%{version}
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -152,7 +138,6 @@ cd ..
 	--disable-silent-rules \
 	--enable-client \
 	--enable-lz4 \
-	%{?with_opengl:--enable-opengl} \
 	--enable-smartcard \
 	%{?with_static_libs:--enable-static}
 
