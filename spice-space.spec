@@ -7,16 +7,15 @@ Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
 # NOTE: 0.13.x is unstable (see DEVEL branch for it)
-Version:	0.12.6
+Version:	0.12.8
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
-Source0:	http://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	605a8c8ea80bc95076c4b3539c6dd026
+Source0:	https://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
+# Source0-md5:	376853d11b9921aa34a06c4dbef81874
 Patch0:		spice-link.patch
 Patch1:		spice-am.patch
-Patch2:		spice-codegen.patch
-URL:		http://www.spice-space.org/
+URL:		https://www.spice-space.org/
 %{?with_opengl:BuildRequires:	OpenGL-devel}
 %{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
 BuildRequires:	alsa-lib-devel
@@ -41,7 +40,6 @@ BuildRequires:	python-pyparsing
 BuildRequires:	python-six
 BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	spice-protocol >= 0.12.10
-BuildRequires:	spice-protocol-codegen >= 0.12.10
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
@@ -133,7 +131,6 @@ Klient SPICE dla X11.
 %setup -q -n spice-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -153,7 +150,8 @@ cd ..
 	--enable-client \
 	--enable-lz4 \
 	%{?with_opengl:--enable-opengl} \
-	--enable-smartcard
+	--enable-smartcard \
+	--enable-static
 
 %{__make}
 
