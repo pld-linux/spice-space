@@ -6,13 +6,14 @@ Summary:	SPICE virtualization solution
 Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
-Version:	0.13.2
+Version:	0.13.3
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	https://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	e007fbe06359db1376208b026fa5b58d
+# Source0-md5:	81113782704848d3afefa43bb93f2184
 Patch0:		spice-am.patch
+Patch1:		spice-lz4.patch
 URL:		https://www.spice-space.org/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	asciidoc
@@ -22,11 +23,13 @@ BuildRequires:	celt051-devel >= 0.5.1.1
 BuildRequires:	cyrus-sasl-devel >= 2
 BuildRequires:	gcc >= 5:3.2
 BuildRequires:	glib2-devel >= 1:2.22
+BuildRequires:	gstreamer-devel >= 1.0
+BuildRequires:	gstreamer-plugins-base-devel >= 1.0
 BuildRequires:	libcacard-devel >= 0.1.2
 BuildRequires:	libjpeg-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:2
-BuildRequires:	lz4-devel
+BuildRequires:	lz4-devel >= 1:1.7
 BuildRequires:	openssl-devel
 BuildRequires:	opus-devel >= 0.9.14
 BuildRequires:	pixman-devel >= 0.17.7
@@ -120,6 +123,7 @@ Klient SPICE dla X11.
 %prep
 %setup -q -n spice-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
