@@ -7,14 +7,13 @@ Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
 # NOTE: 0.13.x is unstable (see DEVEL branch for it)
-Version:	0.12.8
+Version:	0.14.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	https://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	376853d11b9921aa34a06c4dbef81874
-Patch0:		spice-link.patch
-Patch1:		spice-am.patch
+# Source0-md5:	6622aa7dfb5cd026a4d0d7e659216d26
+Patch0:		spice-am.patch
 URL:		https://www.spice-space.org/
 %{?with_opengl:BuildRequires:	OpenGL-devel}
 %{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
@@ -25,7 +24,7 @@ BuildRequires:	automake >= 1:1.11
 BuildRequires:	celt051-devel >= 0.5.1.1
 BuildRequires:	cyrus-sasl-devel >= 2
 BuildRequires:	gcc >= 5:3.2
-BuildRequires:	glib2-devel >= 1:2.22
+BuildRequires:	glib2-devel >= 1:2.28
 BuildRequires:	libcacard-devel >= 0.1.2
 BuildRequires:	libjpeg-devel
 BuildRequires:	libstdc++-devel
@@ -39,7 +38,7 @@ BuildRequires:	python >= 2
 BuildRequires:	python-pyparsing
 BuildRequires:	python-six
 BuildRequires:	rpmbuild(macros) >= 1.527
-BuildRequires:	spice-protocol >= 0.12.10
+BuildRequires:	spice-protocol >= 0.12.13
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
@@ -130,7 +129,6 @@ Klient SPICE dla X11.
 %prep
 %setup -q -n spice-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
