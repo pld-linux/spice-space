@@ -3,7 +3,7 @@
 @@ -30,7 +30,7 @@
  
  AC_CONFIG_MACRO_DIR([m4])
- m4_include([spice-common/m4/spice-deps.m4])
+ m4_include([subprojects/spice-common/m4/spice-deps.m4])
 -AM_CONFIG_HEADER([config.h])
 +AC_CONFIG_HEADERS([config.h])
  AC_CONFIG_AUX_DIR(.)

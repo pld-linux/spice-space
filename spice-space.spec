@@ -7,12 +7,12 @@ Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
 # NOTE: 0.13.x is unstable (see DEVEL branch for it)
-Version:	0.14.0
-Release:	2
+Version:	0.14.1
+Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
-Source0:	https://www.spice-space.org/download/releases/spice-%{version}.tar.bz2
-# Source0-md5:	6622aa7dfb5cd026a4d0d7e659216d26
+Source0:	https://www.spice-space.org/download/releases/spice-server/spice-%{version}.tar.bz2
+# Source0-md5:	1e2442b08605a5a17430d1aaa0912c24
 Patch0:		spice-am.patch
 URL:		https://www.spice-space.org/
 %{?with_opengl:BuildRequires:	OpenGL-devel}
@@ -24,13 +24,13 @@ BuildRequires:	automake >= 1:1.11
 BuildRequires:	celt051-devel >= 0.5.1.1
 BuildRequires:	cyrus-sasl-devel >= 2
 BuildRequires:	gcc >= 5:3.2
-BuildRequires:	glib2-devel >= 1:2.28
+BuildRequires:	glib2-devel >= 1:2.32
 BuildRequires:	libcacard-devel >= 0.1.2
 BuildRequires:	libjpeg-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:2
 BuildRequires:	lz4-devel
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 1.0.0
 BuildRequires:	opus-devel >= 0.9.14
 BuildRequires:	pixman-devel >= 0.17.7
 BuildRequires:	pkgconfig
@@ -38,7 +38,7 @@ BuildRequires:	python >= 2
 BuildRequires:	python-pyparsing
 BuildRequires:	python-six
 BuildRequires:	rpmbuild(macros) >= 1.527
-BuildRequires:	spice-protocol >= 0.12.13
+BuildRequires:	spice-protocol >= 0.12.14
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
@@ -70,8 +70,9 @@ Summary:	SPICE server library
 Summary(pl.UTF-8):	Biblioteka serwera SPICE
 Group:		Libraries
 Requires:	celt051 >= 0.5.1.1
+Requires:	openssl >= 1.0.0
 Requires:	opus >= 0.9.14
-Requires:	glib2 >= 1:2.22
+Requires:	glib2 >= 1:2.32
 Requires:	pixman >= 0.17.7
 Obsoletes:	spice-client
 
@@ -86,8 +87,8 @@ Summary:	Header files for SPICE server library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki serwera SPICE
 Group:		Development/Libraries
 Requires:	celt051-devel >= 0.5.1.1
-Requires:	glib2-devel >= 1:2.22
-Requires:	openssl-devel
+Requires:	glib2-devel >= 1:2.32
+Requires:	openssl-devel >= 1.0.0
 Requires:	pixman-devel >= 0.17.7
 Requires:	spice-server-libs = %{version}-%{release}
 
@@ -136,15 +137,16 @@ Klient SPICE dla X11.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-cd spice-common
+cd subprojects/spice-common
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-cd ..
+cd ../..
 %configure \
 	--disable-silent-rules \
+	--enable-celt051 \
 	--enable-client \
 	--enable-lz4 \
 	%{?with_opengl:--enable-opengl} \
