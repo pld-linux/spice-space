@@ -15,8 +15,8 @@ Source0:	https://www.spice-space.org/download/releases/spice-server/spice-%{vers
 # Source0-md5:	1e2442b08605a5a17430d1aaa0912c24
 Patch0:		spice-am.patch
 URL:		https://www.spice-space.org/
-%{?with_opengl:BuildRequires:	OpenGL-devel}
 %{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
+%{?with_opengl:BuildRequires:	OpenGL-devel}
 BuildRequires:	alsa-lib-devel
 BuildRequires:	asciidoc
 BuildRequires:	autoconf >= 2.63
@@ -70,9 +70,9 @@ Summary:	SPICE server library
 Summary(pl.UTF-8):	Biblioteka serwera SPICE
 Group:		Libraries
 Requires:	celt051 >= 0.5.1.1
+Requires:	glib2 >= 1:2.32
 Requires:	openssl >= 1.0.0
 Requires:	opus >= 0.9.14
-Requires:	glib2 >= 1:2.32
 Requires:	pixman >= 0.17.7
 Obsoletes:	spice-client
 
@@ -118,8 +118,8 @@ Requires:	celt051 >= 0.5.1.1
 Requires:	libcacard >= 0.1.2
 Requires:	opus >= 0.9.14
 Requires:	pixman >= 0.17.7
-Requires:	xorg-lib-libXrandr >= 1.2
 Requires:	xorg-lib-libXinerama >= 1.0
+Requires:	xorg-lib-libXrandr >= 1.2
 
 %description -n spice-client
 SPICE client for X11.
