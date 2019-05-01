@@ -7,12 +7,12 @@ Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
 # NOTE: 0.13.x is unstable (see DEVEL branch for it)
-Version:	0.14.1
+Version:	0.14.2
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	https://www.spice-space.org/download/releases/spice-server/spice-%{version}.tar.bz2
-# Source0-md5:	1e2442b08605a5a17430d1aaa0912c24
+# Source0-md5:	7ca431580b662e7c3cb8021983a3d387
 Patch0:		spice-am.patch
 URL:		https://www.spice-space.org/
 %{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
@@ -23,9 +23,11 @@ BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	celt051-devel >= 0.5.1.1
 BuildRequires:	cyrus-sasl-devel >= 2
-BuildRequires:	gcc >= 5:3.2
-BuildRequires:	glib2-devel >= 1:2.32
-BuildRequires:	libcacard-devel >= 0.1.2
+BuildRequires:	gcc >= 5:4.0
+BuildRequires:	glib2-devel >= 1:2.38
+BuildRequires:	gstreamer-devel >= 1.0
+BuildRequires:	gstreamer-plugins-base-devel >= 1.0
+BuildRequires:	libcacard-devel >= 2.5.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool >= 2:2
@@ -38,7 +40,7 @@ BuildRequires:	python >= 2
 BuildRequires:	python-pyparsing
 BuildRequires:	python-six
 BuildRequires:	rpmbuild(macros) >= 1.527
-BuildRequires:	spice-protocol >= 0.12.14
+BuildRequires:	spice-protocol >= 0.14.0
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
@@ -70,7 +72,7 @@ Summary:	SPICE server library
 Summary(pl.UTF-8):	Biblioteka serwera SPICE
 Group:		Libraries
 Requires:	celt051 >= 0.5.1.1
-Requires:	glib2 >= 1:2.32
+Requires:	glib2 >= 1:2.38
 Requires:	openssl >= 1.0.0
 Requires:	opus >= 0.9.14
 Requires:	pixman >= 0.17.7
@@ -87,7 +89,7 @@ Summary:	Header files for SPICE server library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki serwera SPICE
 Group:		Development/Libraries
 Requires:	celt051-devel >= 0.5.1.1
-Requires:	glib2-devel >= 1:2.32
+Requires:	glib2-devel >= 1:2.38
 Requires:	openssl-devel >= 1.0.0
 Requires:	pixman-devel >= 0.17.7
 Requires:	spice-server-libs = %{version}-%{release}
@@ -115,7 +117,7 @@ Summary:	SPICE client for X11
 Summary(pl.UTF-8):	Klient SPICE dla X11
 Group:		X11/Applications
 Requires:	celt051 >= 0.5.1.1
-Requires:	libcacard >= 0.1.2
+Requires:	libcacard >= 2.5.1
 Requires:	opus >= 0.9.14
 Requires:	pixman >= 0.17.7
 Requires:	xorg-lib-libXinerama >= 1.0
