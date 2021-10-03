@@ -9,7 +9,7 @@ Summary(pl.UTF-8):	System wirtualizacji SPICE
 Name:		spice-space
 # NOTE: 0.odd.x versions are unstable
 Version:	0.14.3
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	https://www.spice-space.org/download/releases/spice-server/spice-%{version}.tar.bz2
