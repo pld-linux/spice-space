@@ -51,7 +51,6 @@ BuildRequires:	xorg-lib-libXinerama-devel >= 1.0
 BuildRequires:	xorg-lib-libXrandr-devel >= 1.2
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	zlib-devel
-ExclusiveArch:	%{ix86} %{x8664} x32 %{arm}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
