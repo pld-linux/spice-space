@@ -8,12 +8,12 @@ Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
 # NOTE: 0.odd.x versions are unstable
-Version:	0.14.3
-Release:	2
+Version:	0.15.0
+Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	https://www.spice-space.org/download/releases/spice-server/spice-%{version}.tar.bz2
-# Source0-md5:	a776650f7c4dc22681d76308475a9190
+# Source0-md5:	840c5284ebc78c15fc7c3a146931bc01
 Patch0:		spice-am.patch
 URL:		https://www.spice-space.org/
 %{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
@@ -22,7 +22,6 @@ BuildRequires:	alsa-lib-devel
 BuildRequires:	asciidoc
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	celt051-devel >= 0.5.1.1
 BuildRequires:	cyrus-sasl-devel >= 2
 BuildRequires:	gcc >= 5:4.0
 BuildRequires:	gdk-pixbuf2-devel >= 2.26
@@ -31,7 +30,7 @@ BuildRequires:	gstreamer-devel >= 1.0
 BuildRequires:	gstreamer-plugins-base-devel >= 1.0
 BuildRequires:	libcacard-devel >= 2.5.1
 BuildRequires:	libjpeg-devel
-BuildRequires:	libstdc++-devel
+BuildRequires:	libstdc++-devel >= 6:4.8.1
 BuildRequires:	libtool >= 2:2
 BuildRequires:	lz4-devel >= 129
 BuildRequires:	openssl-devel >= 1.0.0
@@ -43,7 +42,7 @@ BuildRequires:	python >= 2
 BuildRequires:	python-pyparsing
 BuildRequires:	python-six
 BuildRequires:	rpmbuild(macros) >= 1.527
-BuildRequires:	spice-protocol >= 0.14.0
+BuildRequires:	spice-protocol >= 0.14.3
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
@@ -73,7 +72,6 @@ poświęceń ze strony doznań użytkownika.
 Summary:	SPICE server library
 Summary(pl.UTF-8):	Biblioteka serwera SPICE
 Group:		Libraries
-Requires:	celt051 >= 0.5.1.1
 Requires:	glib2 >= 1:2.38
 Requires:	openssl >= 1.0.0
 Requires:	opus >= 1.0.0
@@ -90,7 +88,6 @@ Biblioteka serwera SPICE.
 Summary:	Header files for SPICE server library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki serwera SPICE
 Group:		Development/Libraries
-Requires:	celt051-devel >= 0.5.1.1
 Requires:	glib2-devel >= 1:2.38
 Requires:	libcacard-devel >= 2.5.1
 Requires:	openssl-devel >= 1.0.0
@@ -135,7 +132,6 @@ cd subprojects/spice-common
 cd ../..
 %configure \
 	--disable-silent-rules \
-	--enable-celt051 \
 	--enable-lz4 \
 	%{?with_opengl:--enable-opengl} \
 	--enable-smartcard \
