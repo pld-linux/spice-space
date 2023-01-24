@@ -9,4 +9,5 @@ diff -urNp -x '*.orig' spice-0.14.3.org/configure.ac spice-0.14.3/configure.ac
 +AC_CONFIG_HEADERS([config.h])
  AC_CONFIG_AUX_DIR(.)
  
- AM_INIT_AUTOMAKE([dist-bzip2 no-dist-gzip subdir-objects foreign])
+ AX_PTHREAD
+ 

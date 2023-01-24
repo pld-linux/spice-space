@@ -21,6 +21,7 @@ URL:		https://www.spice-space.org/
 BuildRequires:	alsa-lib-devel
 BuildRequires:	asciidoc
 BuildRequires:	autoconf >= 2.63
+BuildRequires:	autoconf-archive
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cyrus-sasl-devel >= 2
 BuildRequires:	gcc >= 5:4.0
