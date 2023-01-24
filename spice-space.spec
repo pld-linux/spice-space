@@ -8,12 +8,12 @@ Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
 # NOTE: 0.odd.x versions are unstable
-Version:	0.15.0
+Version:	0.15.1
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	https://www.spice-space.org/download/releases/spice-server/spice-%{version}.tar.bz2
-# Source0-md5:	840c5284ebc78c15fc7c3a146931bc01
+# Source0-md5:	3dca2a2d124eac74f3be01ca023ecfa3
 Patch0:		spice-am.patch
 URL:		https://www.spice-space.org/
 %{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
