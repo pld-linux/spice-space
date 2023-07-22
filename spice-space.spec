@@ -14,6 +14,7 @@ License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	https://www.spice-space.org/download/releases/spice-server/spice-%{version}.tar.bz2
 # Source0-md5:	1de1e9157a1e2396884017978e7cf086
+Patch0:		python3.patch
 URL:		https://www.spice-space.org/
 %{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
 %{?with_opengl:BuildRequires:	OpenGL-devel}
@@ -38,9 +39,9 @@ BuildRequires:	opus-devel >= 1.0.0
 BuildRequires:	orc-devel >= 0.4
 BuildRequires:	pixman-devel >= 0.17.7
 BuildRequires:	pkgconfig
-BuildRequires:	python >= 2
-BuildRequires:	python-pyparsing
-BuildRequires:	python-six
+BuildRequires:	python3
+BuildRequires:	python3-pyparsing
+BuildRequires:	python3-six
 BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	spice-protocol >= 0.14.3
 BuildRequires:	xorg-lib-libX11-devel
@@ -115,6 +116,7 @@ Statyczna biblioteka serwera SPICE.
 
 %prep
 %setup -q -n spice-%{version}
+%patch0 -p1
 
 %build
 %{__libtoolize}
