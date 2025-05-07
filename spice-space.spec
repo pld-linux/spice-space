@@ -116,7 +116,7 @@ Statyczna biblioteka serwera SPICE.
 
 %prep
 %setup -q -n spice-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__libtoolize}
