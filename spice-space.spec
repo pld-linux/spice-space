@@ -8,19 +8,18 @@ Summary(pl.UTF-8):	System wirtualizacji SPICE
 # real package name (spice) is already occupied
 Name:		spice-space
 # NOTE: 0.odd.x versions are unstable
-Version:	0.15.2
+Version:	0.16.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Applications/Emulators
 Source0:	https://www.spice-space.org/download/releases/spice-server/spice-%{version}.tar.bz2
-# Source0-md5:	1de1e9157a1e2396884017978e7cf086
-Patch0:		python3.patch
+# Source0-md5:	435f4b112fdf301152a26dbcfbf2ec22
 URL:		https://www.spice-space.org/
 %{?with_opengl:BuildRequires:	OpenGL-GLU-devel}
 %{?with_opengl:BuildRequires:	OpenGL-devel}
 BuildRequires:	alsa-lib-devel
 BuildRequires:	asciidoc
-BuildRequires:	autoconf >= 2.63
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	autoconf-archive
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cyrus-sasl-devel >= 2
@@ -39,11 +38,10 @@ BuildRequires:	opus-devel >= 1.0.0
 BuildRequires:	orc-devel >= 0.4
 BuildRequires:	pixman-devel >= 0.17.7
 BuildRequires:	pkgconfig
-BuildRequires:	python3
+BuildRequires:	python3 >= 1:3
 BuildRequires:	python3-pyparsing
-BuildRequires:	python3-six
 BuildRequires:	rpmbuild(macros) >= 1.527
-BuildRequires:	spice-protocol >= 0.14.3
+BuildRequires:	spice-protocol >= 0.14.5
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
@@ -93,7 +91,7 @@ Requires:	glib2-devel >= 1:2.38
 Requires:	libcacard-devel >= 2.5.1
 Requires:	openssl-devel >= 1.0.0
 Requires:	pixman-devel >= 0.17.7
-Requires:	spice-protocol >= 0.14.0
+Requires:	spice-protocol >= 0.14.5
 Requires:	spice-server-libs = %{version}-%{release}
 
 %description -n spice-server-devel
@@ -116,7 +114,6 @@ Statyczna biblioteka serwera SPICE.
 
 %prep
 %setup -q -n spice-%{version}
-%patch -P0 -p1
 
 %build
 %{__libtoolize}
@@ -132,6 +129,7 @@ cd subprojects/spice-common
 %{__automake}
 cd ../..
 %configure \
+	PYTHON=%{__python3} \
 	--disable-silent-rules \
 	--enable-lz4 \
 	%{?with_opengl:--enable-opengl} \
